@@ -11,6 +11,10 @@ $movieName = isset($_GET["name"]) ? $_GET["name"] : '';
 if($movieName == ''){
     header("Location: home.php");
 }
+
+function formatToTwoDigits($numberString) {
+    return str_pad($numberString, 2, '0', STR_PAD_LEFT);
+}
 ?>
 
 <!DOCTYPE html>
@@ -29,6 +33,7 @@ if($movieName == ''){
 
 
 <script>
+
     function formatToTwoDigits(numberString) {
         return numberString.padStart(2, '0');
     }
@@ -40,7 +45,7 @@ if($movieName == ''){
         const time = await (await fetch("get_series_watch_time.php?serialId=<?php echo $_GET["serialId"] ?>&serie=<?php echo $_GET["serie"] ?>&epizoda=<?php echo $_GET["epizoda"] ?>")).text();
 
         if (movieName) {
-            const res = await (await fetch("https://corsproxy.io/?http://37.46.211.41:3000/getMovie?name=" + movieName + " s" + formatToTwoDigits(serie) + "e" + formatToTwoDigits(epizoda))).json();
+            const res = JSON.parse('<?php echo file_get_contents('http://37.46.211.41:3000/getMovie?name=' . urlencode($movieName) . '%20s' . formatToTwoDigits($_GET["serie"]) . 'e' . formatToTwoDigits($_GET["epizoda"])) ?>');
 
             document.getElementById("video-link").innerHTML = "<video id='video' class='w-dvw h-dvh' preload='auto' data-setup='{}' autoplay controls><source id='videoSource' src=" + res.videoSrc + " type='video/mp4'></video>"
             if(time !== ""){
