@@ -40,7 +40,7 @@ if($movieName == ''){
         const time = await (await fetch("get_series_watch_time.php?serialId=<?php echo $_GET["serialId"] ?>&serie=<?php echo $_GET["serie"] ?>&epizoda=<?php echo $_GET["epizoda"] ?>")).text();
 
         if (movieName) {
-            const res = await (await fetch("http://localhost:3000/getMovie?name=" + movieName + " s" + formatToTwoDigits(serie) + "e" + formatToTwoDigits(epizoda))).json();
+            const res = await (await fetch("http://37.46.211.41/getMovie?name=" + movieName + " s" + formatToTwoDigits(serie) + "e" + formatToTwoDigits(epizoda))).json();
 
             document.getElementById("video-link").innerHTML = "<video id='video' class='w-dvw h-dvh' preload='auto' data-setup='{}' autoplay controls><source id='videoSource' src=" + res.videoSrc + " type='video/mp4'></video>"
             if(time !== ""){
