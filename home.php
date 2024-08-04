@@ -99,7 +99,7 @@ $serialy = $db->getSerialy();
 
     <div class="flex gap-2 items-center pr-6">
         <p class="text-white font-semibold"><?php echo htmlspecialchars($profile['jmeno_profilu']); ?></p>
-        <a href="profile_select.php" class="cursor-pointer rounded-md flex items-center gap-1 hover:bg-[rgba(255,255,255,.3)] group px-2 py-1 transition-all duration-300">
+        <a href="profile_select.php" class="cursor-pointer rounded-md flex items-center gap-1 hover:bg-white group px-2 py-1 transition-all duration-300">
             <span class="material-symbols-rounded text-white group-hover:text-black transition-colors duration-300">group</span>
             <p class="text-white group-hover:text-black transition-colors duration-300">Změnit profil</p>
         </a>
