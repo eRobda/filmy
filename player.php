@@ -16,6 +16,10 @@ if (empty($movieName)) {
     exit();
 }
 
+require_once 'backend/db.php';
+$db = Database::getInstance();
+$serialData = $db->getSerialById($_GET["serialId"]);
+
 // Function to format number to two digits
 function formatToTwoDigits($numberString) {
     return str_pad($numberString, 2, '0', STR_PAD_LEFT);
@@ -33,7 +37,7 @@ function formatToTwoDigits($numberString) {
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-neutral-950">
-<div id="video-link" class="mt-4 text-center text-white"></div>
+<div id="video-link" class="text-center text-white"></div>
 
 <script>
     document.addEventListener("DOMContentLoaded", async () => {
@@ -90,11 +94,29 @@ function formatToTwoDigits($numberString) {
             nextEpisodeImage.classList.add('absolute', 'top-9', 'h-9', 'right-10');
             nextEpisodeLink.appendChild(nextEpisodeImage);
 
+            const titleWrapper = document.createElement("div");
+            titleWrapper.classList.add("absolute", "top-9", "flex", "gap-2", "items-baseline");
+            titleWrapper.style.left = "50%";
+            titleWrapper.style.transform = "translateX(-50%)";
+
+            const titleElement = document.createElement("h1");
+            titleElement.innerHTML = "<?php echo $serialData["name"] ?>";
+            titleElement.classList.add("text-white", "text-xl", "font-semibold");
+
+            const titleDetails = document.createElement("p");
+            titleDetails.innerHTML = "S" + formatToTwoDigits(serie) + "E" + formatToTwoDigits(epizoda);
+
+
+            titleWrapper.appendChild(titleElement);
+            titleWrapper.appendChild(titleDetails);
+
+
             // Append elements to the container
             const videoLinkDiv = document.getElementById('video-link');
             videoLinkDiv.appendChild(videoElement);
             videoLinkDiv.appendChild(backLink);
             videoLinkDiv.appendChild(nextEpisodeLink);
+            videoLinkDiv.appendChild(titleWrapper);
 
             // Set the current time if available
             if (time !== "") {
