@@ -48,7 +48,7 @@ function formatToTwoDigits($numberString) {
 
         if (movieName) {
             // Fetch the movie dataa
-            const response = await fetch('<?php echo file_get_contents('http://37.46.211.41:3000/getMovie?name=' . urlencode($movieName) . '%20s' . formatToTwoDigits($_GET["serie"]) . 'e' . formatToTwoDigits($_GET["epizoda"])) ?>');
+            const response = '<?php echo file_get_contents('http://37.46.211.41:3000/getMovie?name=' . urlencode($movieName) . '%20s' . formatToTwoDigits($_GET["serie"]) . 'e' . formatToTwoDigits($_GET["epizoda"])) ?>';
             var res = await response.json();
             if(res.error === "No movies found"){
                 //nothing found try increment series insted of episode
