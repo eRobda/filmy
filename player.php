@@ -40,10 +40,10 @@ function formatToTwoDigits($numberString) {
 <div id="video-link" class="text-center text-white"></div>
 
 <script>
+    const movieName = "<?php echo htmlspecialchars($movieName, ENT_QUOTES, 'UTF-8'); ?>";
+    const serie = "<?php echo htmlspecialchars($_GET['serie'], ENT_QUOTES, 'UTF-8'); ?>";
+    const epizoda = "<?php echo htmlspecialchars($_GET['epizoda'], ENT_QUOTES, 'UTF-8'); ?>";
     document.addEventListener("DOMContentLoaded", async () => {
-        const movieName = "<?php echo htmlspecialchars($movieName, ENT_QUOTES, 'UTF-8'); ?>";
-        const serie = "<?php echo htmlspecialchars($_GET['serie'], ENT_QUOTES, 'UTF-8'); ?>";
-        const epizoda = "<?php echo htmlspecialchars($_GET['epizoda'], ENT_QUOTES, 'UTF-8'); ?>";
 
         // Fetch the current watch time
         const timeResponse = await fetch(`get_series_watch_time.php?serialId=<?php echo urlencode($_GET['serialId']); ?>&serie=${serie}&epizoda=${epizoda}`);

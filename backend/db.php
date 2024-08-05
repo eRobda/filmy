@@ -84,7 +84,7 @@ class Database {
         if ($stmt === false) {
             die('prepare() failed: ' . htmlspecialchars($this->conn->error));
         }
-        $stmt->bind_param('iiisii', $profileId, $serialId, $serie, $epizoda, $cas, $celkovyCas);
+        $stmt->bind_param('ssssii', $profileId, $serialId, $serie, $epizoda, $cas, $celkovyCas);
         $stmt->execute();
         if ($stmt->error) {
             die('execute() failed: ' . htmlspecialchars($stmt->error));
