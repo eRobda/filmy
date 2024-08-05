@@ -48,7 +48,7 @@ function formatToTwoDigits($numberString) {
 
         if (movieName) {
             // Fetch the movie data
-            const response = await fetch(`http://37.46.211.41:3000/getMovie?name=${encodeURIComponent(movieName)}%20s${formatToTwoDigits(serie)}e${formatToTwoDigits(epizoda)}`);
+            const response = await fetch(`37.46.211.41:3000/getMovie?name=${encodeURIComponent(movieName)}%20s${formatToTwoDigits(serie)}e${formatToTwoDigits(epizoda)}`);
             var res = await response.json();
             if(res.error === "No movies found"){
                 //nothing found try increment series insted of episode
