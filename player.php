@@ -33,7 +33,6 @@ function formatToTwoDigits($numberString) {
 
 
 <script>
-
     function formatToTwoDigits(numberString) {
         return numberString.padStart(2, '0');
     }
@@ -42,12 +41,18 @@ function formatToTwoDigits($numberString) {
         const movieName = "<?php echo $movieName ?>";
         const serie = "<?php echo $_GET["serie"] ?>";
         const epizoda = "<?php echo $_GET["epizoda"] ?>";
+
         const time = await (await fetch("get_series_watch_time.php?serialId=<?php echo $_GET["serialId"] ?>&serie=<?php echo $_GET["serie"] ?>&epizoda=<?php echo $_GET["epizoda"] ?>")).text();
 
         if (movieName) {
             const res = JSON.parse('<?php echo file_get_contents('http://37.46.211.41:3000/getMovie?name=' . urlencode($movieName) . '%20s' . formatToTwoDigits($_GET["serie"]) . 'e' . formatToTwoDigits($_GET["epizoda"])) ?>');
 
-            document.getElementById("video-link").innerHTML = "<video id='video' class='w-dvw h-dvh' preload='auto' data-setup='{}' autoplay controls><source id='videoSource' src=" + res.videoSrc + " type='video/mp4'></video>"
+            document.getElementById("video-link").innerHTML = "" +
+                "<video id='video' class='w-dvw h-dvh relative' preload='auto' data-setup='{}' autoplay controls>" +
+                    "<source id='videoSource' src=" + res.videoSrc + " type='video/mp4'>" +
+                "</video>" +
+                "<a href='home.php'><img title='Zpět' src='media/icon_next.png' class='absolute top-10 h-8 rotate-180 left-10'></a>"+
+                "<a href='player.php?name=<?php echo $_GET["name"] ?>&typ=serial&serialId=<?php echo $_GET["serialId"]?>&serie=<?php echo $_GET["serie"] ?>&epizoda=<?php echo formatToTwoDigits(intval($_GET["epizoda"]) + 1) ?>'><img title='Další epizoda' src='media/icon_skip.png' class='absolute top-9 h-9 right-10'></a>";
             if(time !== ""){
                 document.getElementById("video").currentTime = time;
             }
