@@ -23,27 +23,31 @@ $profiles = $db->getProfilesByUserId($userId);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Vybrat profil</title>
 </head>
-<body>
-<h2>Vyber profil</h2>
+<body class="bg-neutral-950 flex gap-10 h-dvh w-dvw items-center justify-center flex-col">
 <?php if (!empty($profiles)): ?>
-    <ul>
+<h2 class="text-white font-semibold text-4xl">Kdo se dívá?</h2>
+    <div class="flex gap-5">
         <?php foreach ($profiles as $profile): ?>
-            <li>
-                <a href="set_profile.php?profile_id=<?php echo htmlspecialchars($profile['id']); ?>">
-                    <?php echo htmlspecialchars($profile['jmeno_profilu']); ?>
-                </a>
-            </li>
+            <a class="text-neutral-500 flex items-center flex-col" href="set_profile.php?profile_id=<?php echo htmlspecialchars($profile['id']); ?>">
+                <div class="flex flex-col items-center">
+                    <div class="h-[9rem] w-[9rem] rounded bg-neutral-500">
+
+                    </div>
+                </div>
+                <?php echo htmlspecialchars($profile['jmeno_profilu']); ?>
+            </a>
         <?php endforeach; ?>
-    </ul>
+    </div>
 <form method="POST" action="add_profile.php">
-    <input type="text" name="profile_name">
-    <button type="submit">Přidat profil</button>
+    <input type="text" class="py-2 rounded outline outline-1 bg-transparent outline-white text-white px-3" name="profile_name">
+    <button class="text-white outline outline-1 px-3 py-2 rounded" type="submit">Přidat profil</button>
 </form>
 <?php else: ?>
-    <p>Nenašli se žádné profily. Kontaktujte podporu.</p>
+    <p class="text-white">Nenašli se žádné profily. Kontaktujte podporu.</p>
 <?php endif; ?>
-<a href="logout.php">Odhlásit se</a>
+<a href="logout.php" class="outline outline-1 px-3 py-2 rounded outline-red-400 text-red-400 hover:bg-red-500 hover:shadow-[0_0px_60px_-10px_red] hover:text-white transition">Odhlásit se</a>
 </body>
 </html>
