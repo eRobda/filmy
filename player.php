@@ -43,7 +43,7 @@ function formatToTwoDigits($numberString) {
         const epizoda = "<?php echo $_GET["epizoda"] ?>";
 
         const time = await (await fetch("get_series_watch_time.php?serialId=<?php echo $_GET["serialId"] ?>&serie=<?php echo $_GET["serie"] ?>&epizoda=<?php echo $_GET["epizoda"] ?>")).text();
-
+        console.log(time);
         if (movieName) {
             const res = JSON.parse('<?php echo file_get_contents('http://37.46.211.41:3000/getMovie?name=' . urlencode($movieName) . '%20s' . formatToTwoDigits($_GET["serie"]) . 'e' . formatToTwoDigits($_GET["epizoda"])) ?>');
 

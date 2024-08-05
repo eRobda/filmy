@@ -95,7 +95,7 @@ class Database {
     // Function to get series watch time
     public function getSeriesWatchTime($profileId, $serialId, $serie, $epizoda) {
         $stmt = $this->conn->prepare("SELECT cas FROM serialy_watchtime WHERE profile_id = ? AND serial_id = ? AND serie = ? AND epizoda = ? ORDER BY cas DESC LIMIT 1");
-        $stmt->bind_param('iiis', $profileId, $serialId, $serie, $epizoda);
+        $stmt->bind_param('iiii', $profileId, $serialId, $serie, $epizoda);
         $stmt->execute();
         $result = $stmt->get_result();
         $row = $result->fetch_assoc();
