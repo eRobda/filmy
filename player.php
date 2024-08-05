@@ -49,7 +49,11 @@ function formatToTwoDigits($numberString) {
         if (movieName) {
             // Fetch the movie data
             const response = await fetch(`http://37.46.211.41:3000/getMovie?name=${encodeURIComponent(movieName)}%20s${formatToTwoDigits(serie)}e${formatToTwoDigits(epizoda)}`);
-            const res = await response.json();
+            var res = await response.json();
+            if(res.error === "No movies found"){
+                //nothing found try increment series insted of episode
+                location.href = "player.php?name=" + movieName + "&typ=serial&serialId=<?php echo $_GET["serialId"] ?>&serie=" + formatToTwoDigits(parseInt(serie) + 1) + "&epizoda=" + formatToTwoDigits(1);
+            }
 
             // Create video element
             const videoElement = document.createElement('video');
