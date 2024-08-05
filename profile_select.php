@@ -42,8 +42,8 @@ $profiles = $db->getProfilesByUserId($userId);
         <?php endforeach; ?>
     </div>
 <form method="POST" action="add_profile.php">
-    <input type="text" class="py-2 rounded outline outline-1 bg-transparent outline-white text-white px-3" name="profile_name">
-    <button class="text-white outline outline-1 px-3 py-2 rounded" type="submit">Přidat profil</button>
+    <input type="text" class="py-2 rounded outline outline-1 bg-transparent outline-neutral-500 text-white px-3" name="profile_name">
+    <button class="text-neutral-500 outline outline-neutral-500 outline-1 px-3 py-2 rounded" type="submit">Přidat profil</button>
 </form>
 <?php else: ?>
     <p class="text-white">Nenašli se žádné profily. Kontaktujte podporu.</p>
