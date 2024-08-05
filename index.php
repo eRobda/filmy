@@ -34,21 +34,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Login</title>
 </head>
-<body>
-<h2>Login</h2>
+<body class="bg-neutral-950 flex flex-col items-center justify-center h-dvh w-dvw">
 <?php if ($message): ?>
     <p><?php echo $message; ?></p>
 <?php endif; ?>
-<form method="POST" action="">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required>
+<img src="media/logo2.png" class="h-[5rem]" alt="">
+<form method="POST" style="" action="">
+    <p class="text-white mt-10" for="username">Uživatelské jméno:</p>
+    <input class="py-2 px-3 outline outline-1 outline-white bg-transparent rounded text-white" type="text" id="username" name="username" required>
     <br><br>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
+    <p class="text-white" for="password">Heslo:</p>
+    <input class="py-2 px-3 outline outline-1 outline-white bg-transparent rounded text-white" type="password" id="password" name="password" required>
     <br><br>
-    <button type="submit">Login</button>
+    <button class="outline outline-1 outline-white rounded py-2 px-3 text-white" type="submit">Přihlásit</button>
 </form>
 </body>
 </html>
